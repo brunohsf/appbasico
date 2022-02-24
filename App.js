@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 
 class App extends Component {
   render() {
     let cidade = 'JALES - SP';
 
     return (
-      <View>
-        <Text>My App</Text>
-        <Text>Primeiro App com React Native</Text>
-        <Text style={{ color: 'red' }}>Exemplo de Props</Text>
-        <Text style={{ color: '#00FFF', fontSize: 25, margin: 15 }}>Exemplo de Props</Text>
-        <Imagem largura={420} altura={400} />
-        <Text style={{ fontFamily: 'arial', fontStyle: 'italic', fontSize: 35 }}>{cidade}</Text>
+      <View style={styles.header}>
+        <Text style={styles.headerText}>appMuseum</Text>
+        <View style={styles.body}>
+          <Text style={styles.textBody}>MUSEU DE JALES</Text>
+        </View>
+        <View style={styles.gallery}>
+          <Imagem largura={125} altura={133} />
+          <Imagem largura={125} altura={133} />
+          <Imagem largura={125} altura={133} />
+        </View>
       </View>
     );
   }
@@ -24,11 +27,43 @@ class Imagem extends Component {
 
     return (
       <View>
-        <Image source={{ uri: { img } }} style={{ width: this.props.largura, height: this.props.altura }} />
+        <Image source={{ uri: img }} style={{ width: this.props.largura, height: this.props.altura }} />
       </View>
 
     );
   }
 }
+
+const styles = StyleSheet.create({
+  header: {
+    height: 50,
+    backgroundColor: '#00008B',
+  },
+
+  body: {
+    height: 400,
+    backgroundColor: '#ADD8E6',
+  },
+
+  headerText: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    color: '#FFF'
+
+  },
+
+  textBody: {
+    fontSize: 40,
+    textAlign: 'center',
+  },
+
+  gallery: {
+    flexDirection: 'row',
+    alignContent: 'stretch'
+  }
+
+
+
+})
 
 export default App
