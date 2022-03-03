@@ -1,69 +1,61 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text} from 'react-native';
 
-class App extends Component {
-  render() {
-    let cidade = 'JALES - SP';
+import {Picker} from '@react-native-picker/picker';
 
-    return (
-      <View style={styles.header}>
-        <Text style={styles.headerText}>appMuseum</Text>
-        <View style={styles.body}>
-          <Text style={styles.textBody}>MUSEU DE JALES</Text>
-        </View>
-        <View style={styles.gallery}>
-          <Imagem largura={125} altura={133} />
-          <Imagem largura={125} altura={133} />
-          <Imagem largura={125} altura={133} />
-        </View>
-      </View>
-    );
-  }
-}
+export default class App extends Component {
 
-class Imagem extends Component {
-  render() {
-    let img = 'https://i.imgur.com/mVvh7pG.png';
+  constructor(props){
+    super(props);
+    this.state = {
+      pizza: 0,
+      pizzas: [
+        {key: 1, nome: 'Strogonoff', valor: 35.90},
+        {key: 2, nome: 'Calabresa', valor: 59},
+        {key: 3, nome: 'Quatro queijos', valor: 37},
+        {key: 4, nome: 'Brigadeiro', valor: 25.70},
+        {key: 5, nome: 'Portuguesa', valor: 70},
+      ]
+    };
+  };
 
-    return (
-      <View>
-        <Image source={{ uri: img }} style={{ width: this.props.largura, height: this.props.altura }} />
-      </View>
+ render(){
 
-    );
-  }
+  let pizzasItem = this.state.pizzas.map( (v, k) => {
+    return <Picker.Item key={k} value={k} label={v.nome} />
+  } )
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.logo}>Menu Pizza</Text>
+
+      <Picker
+      selectedValue={this.state.pizza}
+      onValueChange={ (itemValue, itemIndex) =>  this.setState({pizza: itemValue}) }
+      >
+       {pizzasItem}
+      </Picker>
+
+      <Text style={styles.pizzas}>Voce escolheu: {this.state.pizzas[this.state.pizza].nome}</Text>
+      <Text style={styles.pizzas}>R$: {this.state.pizzas[this.state.pizza].valor.toFixed(2)}</Text>
+    </View>
+   );
+ }
 }
 
 const styles = StyleSheet.create({
-  header: {
-    height: 50,
-    backgroundColor: '#00008B',
+  container:{
+    flex:1,
+    marginTop: 20,
   },
-
-  body: {
-    height: 400,
-    backgroundColor: '#ADD8E6',
-  },
-
-  headerText: {
+  logo:{
     textAlign: 'center',
-    fontWeight: 'bold',
-    color: '#FFF'
-
+    fontSize: 28,
+    fontWeight: 'bold'
   },
-
-  textBody: {
-    fontSize: 40,
-    textAlign: 'center',
-  },
-
-  gallery: {
-    flexDirection: 'row',
-    alignContent: 'stretch'
+  pizzas:{
+    marginTop: 15,
+    fontSize: 25,
+    textAlign: 'center'
   }
-
-
-
-})
-
-export default App
+});
