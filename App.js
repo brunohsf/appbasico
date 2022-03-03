@@ -1,58 +1,48 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList
+} from 'react-native';
+import Pessoa from './src/Pessoa';
 
-import {Picker} from '@react-native-picker/picker';
+class App extends Component {
 
-export default class App extends Component {
-
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      profissao: 0,
-      profissoes: [
-        {key: 1, nome: 'Marcelo Boer', profissao: "Professor"},
-        {key: 2, nome: 'Tiago Riberiro', profissao: "Coordenador"},
-        {key: 3, nome: 'Bruno', profissao: "Analista de Qualidade"},
+      feed: [
+        { id: '1', nome: 'Matheus', idade: 50, email: 'matheus@matheus.com' },
+        { id: '2', nome: 'Joao', idade: 22, email: 'joao@joao.com' },
+        { id: '3', nome: 'Henrique', idade: 39, email: 'henrique@henrique.com' },
+        { id: '4', nome: 'Paulo', idade: 15, email: 'paulo@paulo.com' },
+        { id: '5', nome: 'JOSE', idade: 12, email: 'jose@jose.com' },
       ]
     };
-  };
+  }
 
- render(){
+  render() {
+    return (
+      <View style={styles.container}>
 
-  let profissaoPessoa = this.state.profissoes.map( (v, k) => {
-    return <Picker.Item key={k} value={k} label={v.nome} />
-  } )
+        <FlatList
+          data={this.state.feed}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => <Pessoa data={item} />}
+        />
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.logo}>Lista de Profissionais</Text>
+      </View>
+    );
+  }
 
-      <Picker
-      selectedValue={this.state.nome}
-      onValueChange={ (itemValue, itemIndex) =>  this.setState({profissao: itemValue}) }
-      >
-       {profissaoPessoa}
-      </Picker>
-
-      <Text style={styles.profissoes}>O profissional escolhido é {this.state.profissoes[this.state.profissao].profissao}</Text>
-    </View>
-   );
- }
 }
-
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    marginTop: 20,
-  },
-  logo:{
-    textAlign: 'center',
-    fontSize: 28,
-    fontWeight: 'bold'
-  },
-  profissoes:{
-    marginTop: 15,
-    fontSize: 25,
-    textAlign: 'center'
+  container: {
+    flex: 1,
   }
 });
+
+export default App;
+
+
