@@ -14,7 +14,7 @@ import OuterDrawerItem from '../components/OuterDrawerItem';
 import DrawerHeader from '../components/DrawerHeader';
 
 const styles = StyleSheet.create({
-	customDrawerTouch: {
+	customDrawerTouch: {		
 		paddingLeft: 13,
 		paddingTop: 15,
 	},
