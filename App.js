@@ -19,6 +19,9 @@ import {
   Divider,
   Icon,
 } from "native-base";
+
+function LogarScreen({ navigation })
+
 const Drawer = createDrawerNavigator();
 function Component(props) {
   return (
