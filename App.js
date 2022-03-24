@@ -1,4 +1,5 @@
 import * as React from "react";
+import React, { useState } from 'react-native'
 import { NavigationContainer } from "@react-navigation/native";
 import {
   createDrawerNavigator,
@@ -42,11 +43,11 @@ const getIcon = (screenName) => {
     case "Favoritos":
       return "heart";
     case "Histórico":
-      return "history";    
+      return "history";
     case "Entrar":
-      return "login";    
+      return "login";
     case "Sair":
-      return "logout";    
+      return "logout";
     default:
       return undefined;
   }
@@ -100,7 +101,7 @@ function CustomDrawerContent(props) {
               </Pressable>
             ))}
           </VStack>
-          
+
         </VStack>
       </VStack>
     </DrawerContentScrollView>
@@ -115,7 +116,7 @@ function MyDrawer() {
         <Drawer.Screen name="Livros" component={Component} />
         <Drawer.Screen name="Empréstimos" component={Component} />
         <Drawer.Screen name="Favoritos" component={Component} />
-        <Drawer.Screen name="Histórico" component={Component} />        
+        <Drawer.Screen name="Histórico" component={Component} />
         <Drawer.Screen name="Entrar" component={Component} />
       </Drawer.Navigator>
     </Box>
