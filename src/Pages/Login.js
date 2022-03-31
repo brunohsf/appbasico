@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, StyleSheet, SafeAreaView , 
     TextInput, TouchableOpacity } from 'react-native';
 
-export default function Login() {
+export default function Login({changeStatus}) {
 
   const [type, setType] = useState('login');
   const [email, setEmail] = useState('');

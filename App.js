@@ -1,5 +1,6 @@
-import * as React from "react";
-import React, { useState } from 'react-native'
+import * as React from "react"
+import { useState } from "react"
+import Login from "./src/Pages/Login"
 import { NavigationContainer } from "@react-navigation/native";
 import {
   createDrawerNavigator,
@@ -20,10 +21,21 @@ import {
   Divider,
   Icon,
 } from "native-base";
+import { SafeAreaView } from "react-native-web";
 
-function LogarScreen({ navigation })
+function Logar(){
+  const [user, setUser] = useState(null);
+  if (!user){
+    return <Login changeStatus = {(user) => setUser(user)}/>;
+  }
+
+  return <SafeAreaView>
+    <Text>Lista de Livros</Text>
+  </SafeAreaView>
+}
 
 const Drawer = createDrawerNavigator();
+
 function Component(props) {
   return (
     <Center>
@@ -117,7 +129,7 @@ function MyDrawer() {
         <Drawer.Screen name="Empréstimos" component={Component} />
         <Drawer.Screen name="Favoritos" component={Component} />
         <Drawer.Screen name="Histórico" component={Component} />
-        <Drawer.Screen name="Entrar" component={Component} />
+        <Drawer.Screen name="Entrar" component={Logar} />
       </Drawer.Navigator>
     </Box>
   );
