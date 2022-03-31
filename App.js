@@ -1,6 +1,7 @@
 import * as React from "react"
 import { useState } from "react"
 import Login from "./src/Pages/Login"
+import firebase from "./src/services/connectionFirebase";
 import { NavigationContainer } from "@react-navigation/native";
 import {
   createDrawerNavigator,

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import firebase from "./src/services/connectionFirebase";
 import { Text, StyleSheet, SafeAreaView , 
     TextInput, TouchableOpacity } from 'react-native';
+
 
 export default function Login({changeStatus}) {
 
